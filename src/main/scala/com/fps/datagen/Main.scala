@@ -1,7 +1,5 @@
 package com.fps.datagen
 
-import java.io.FileNotFoundException
-
 /**
  * @author medge
  *
@@ -29,27 +27,14 @@ import java.io.FileNotFoundException
  *
  *  }
  *
- *
- *
  */
-object Main extends App with JsonSupport {
+object Main extends App with FileSupport with JsonSupport {
 
-  def readResourceFile(p: String) = {
-    Option(getClass.getResourceAsStream(p)).map(scala.io.Source.fromInputStream)
-      .map(_.getLines.toList)
-      .map(_.mkString("\n"))
-      .getOrElse(throw new FileNotFoundException(p))
-  }
-
-  val zipcodesJson = readResourceFile("/zipcodes.json")
-  val zipcodes = readJson[ZipCodeData](zipcodesJson).zipcodes
+  val zipcodesJson = readResourceFile("/zipcodes.json").mkString("\n")
+  val zipcodes = readJson[List[ZipCode]](zipcodesJson)
 
   println(zipcodes.head.state)
 }
-
-case class ZipCodeData(
-  zipcodes: List[ZipCode]
-)
 
 /**
  * {"zip":"10001","latitude":40.71,"longitude":-73.99,"city":"New York","state":"NY"}
