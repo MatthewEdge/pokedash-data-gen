@@ -2,8 +2,6 @@ package com.fps.datagen
 
 import java.io.FileNotFoundException
 
-import scala.io.Source
-
 /**
  * @author medge
  *

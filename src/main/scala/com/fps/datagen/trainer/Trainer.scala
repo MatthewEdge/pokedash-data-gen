@@ -7,7 +7,6 @@ import com.fps.datagen.pokemon.Pokemon
  */
 case class Trainer(
   id: String,
-  name: String,
   gender: String,
   age: Int,
   pokemon: Set[Pokemon]
