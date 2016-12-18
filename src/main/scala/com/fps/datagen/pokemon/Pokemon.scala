@@ -1,10 +1,7 @@
 package com.fps.datagen.pokemon
 
-/**
- * Pokemon model
- *
- * @author medge
- */
+/* @author medge */
+
 case class Pokemon(
   pokedexId: Int,
   name: String,

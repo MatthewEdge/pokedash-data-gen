@@ -2,6 +2,8 @@ package com.fps.datagen.pokemon
 
 import Pokemon._
 
+/* @author medge */
+
 object Generations {
   val Generation1 = Set(
     Bulbasaur, Ivysaur, Venusaur,

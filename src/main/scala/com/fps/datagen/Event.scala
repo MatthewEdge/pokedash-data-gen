@@ -11,28 +11,28 @@ import com.fps.datagen.trainer.Trainer
  * An event that occurred at some point in time at some location
  */
 trait Event {
-  val eventType: EventType.Value
+  val eventType: String /* String */
   val state: String
   val zipCode: String
   val ts: LocalDateTime = LocalDateTime.now()
 }
 
-object EventType extends Enumeration {
-  val BATTLE = Value("Battle")
-  val TRADE = Value("Trade")
-  val GYM_TAKEOVER = Value("Gym Takeover")
-  val SIGHTING = Value("Sighting")
+object EventType {
+  val BATTLE = "Battle"
+  val TRADE = "Trade"
+  val GYM_TAKEOVER = "Gym Takeover"
+  val SIGHTING = "Sighting"
 }
 
 case class SightingEvent(
-  eventType: EventType.Value = EventType.SIGHTING,
+  eventType: String = EventType.SIGHTING,
   state: String,
   zipCode: String,
   pokemon: Pokemon
 ) extends Event
 
 case class BattleEvent(
-  eventType: EventType.Value = EventType.BATTLE,
+  eventType: String = EventType.BATTLE,
   state: String,
   zipCode: String,
   winner: Trainer,
@@ -43,17 +43,11 @@ case class BattleEvent(
 ) extends Event
 
 case class TradeEvent(
-  eventType: EventType.Value = EventType.TRADE,
+  eventType: String = EventType.TRADE,
   state: String,
   zipCode: String,
   trainerA: Trainer,
   pokemonA: Pokemon,
   trainerB: Trainer,
   pokemonB: Pokemon
-) extends Event
-
-case class GymTakeoverEvent(
-  eventType: EventType.Value = EventType.GYM_TAKEOVER,
-  state: String,
-  zipCode: String
 ) extends Event

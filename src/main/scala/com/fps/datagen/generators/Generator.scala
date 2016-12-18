@@ -2,12 +2,10 @@ package com.fps.datagen.generators
 
 import scala.util.Random
 
+/* @author medge */
+
 /**
  * Base Generator Class. Mix in desired traits when creating instances to include other generator types
- * ex:
- *    val withStates = new Generator with GeoGenerator
- *
- * @author medge
  */
 abstract class Generator {
 
