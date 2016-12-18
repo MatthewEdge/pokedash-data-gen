@@ -20,4 +20,17 @@ trait FileSupport {
       .getOrElse(throw new FileNotFoundException(path))
   }
 
+  /**
+   * Write content to a file at the given path
+   *
+   * @param path String
+   * @param content String
+   */
+  def write(path: String, content: String): Unit = {
+      import java.nio.file.{Paths, Files}
+      import java.nio.charset.StandardCharsets
+
+      Files.write(Paths.get(path), content.getBytes(StandardCharsets.UTF_8))
+  }
+
 }
