@@ -8,13 +8,17 @@ import com.fps.datagen.generators.geo.GeoGenerator
 object Main extends App with JsonMultiFileWriter {
 
   val numRecords = 500
+  val numFiles = 5
+
+  val genFolder = "./gen"
+  val filePrefix = "battles"
 
   // Creates JSON records
   lazy val jsonRecords =
     (0 to numRecords)
       .map(i => GeoGenerator.randomStateAndZip())
-      .map { case (state, zip) => EventGenerator.randomBattleEvent(state, zip)}
+      .map { case (state, zip) => EventGenerator.randomBattleEvent(state, zip) }
 
-  writePartFiles(jsonRecords, 5, "./gen", "battles")
+  writePartFiles(jsonRecords, numFiles, genFolder, filePrefix)
 
 }
