@@ -1,6 +1,6 @@
 package com.fps.datagen.generators.events
 
-import com.fps.datagen.BattleEvent
+import com.fps.datagen.event.BattleEvent
 import com.fps.datagen.generators.Generator
 import com.fps.datagen.generators.pokemon.PokemonGenerator._
 
