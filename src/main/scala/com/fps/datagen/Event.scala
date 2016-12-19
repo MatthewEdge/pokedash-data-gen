@@ -23,15 +23,16 @@ object EventType {
 }
 
 case class SightingEvent(
-  eventType: String = EventType.SIGHTING,
   state: String,
   zipCode: String,
-  ts: String,
-  pokemon: Pokemon
-) extends Event
+  ts: String, pokemon: Pokemon
+) extends Event {
+
+  val eventType: String = EventType.SIGHTING
+
+}
 
 case class BattleEvent(
-  eventType: String = EventType.BATTLE,
   state: String,
   zipCode: String,
   ts: String,
@@ -40,10 +41,13 @@ case class BattleEvent(
   pokemonA: Pokemon,
   trainerB: Trainer,
   pokemonB: Pokemon
-) extends Event
+) extends Event {
+
+  val eventType: String = EventType.BATTLE
+
+}
 
 case class TradeEvent(
-  eventType: String = EventType.TRADE,
   state: String,
   zipCode: String,
   ts: String,
@@ -51,4 +55,8 @@ case class TradeEvent(
   pokemonA: Pokemon,
   trainerB: Trainer,
   pokemonB: Pokemon
-) extends Event
+) extends Event {
+
+  val eventType: String = EventType.TRADE
+
+}

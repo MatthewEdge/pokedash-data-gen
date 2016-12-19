@@ -1,8 +1,8 @@
 package com.fps.datagen.generators.events
 
+import com.fps.datagen.BattleEvent
 import com.fps.datagen.generators.Generator
 import com.fps.datagen.generators.pokemon.PokemonGenerator._
-import com.fps.datagen.{BattleEvent, EventType}
 
 import scala.util.Random
 
@@ -36,7 +36,6 @@ object EventGenerator extends Generator {
     }
 
     BattleEvent(
-      EventType.BATTLE,
       state,
       zip,
       randomDate().toString,
