@@ -1,7 +1,8 @@
-package com.fps.datagen.generators
+package com.fps.datagen.generators.pokemon
 
 import java.util.UUID
 
+import com.fps.datagen.generators.Generator
 import com.fps.datagen.pokemon.{Generations, Pokemon}
 import com.fps.datagen.trainer.Trainer
 
