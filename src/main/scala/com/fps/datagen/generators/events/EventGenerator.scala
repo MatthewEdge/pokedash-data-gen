@@ -39,6 +39,7 @@ object EventGenerator extends Generator {
       EventType.BATTLE,
       state,
       zip,
+      randomDate().toString,
       victoriousTrainer,
       trainerA,
       pokemonA,

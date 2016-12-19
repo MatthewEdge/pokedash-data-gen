@@ -1,7 +1,5 @@
 package com.fps.datagen
 
-import java.time.LocalDateTime
-
 import com.fps.datagen.pokemon.Pokemon
 import com.fps.datagen.trainer.Trainer
 
@@ -14,7 +12,7 @@ trait Event {
   val eventType: String /* String */
   val state: String
   val zipCode: String
-  val ts: LocalDateTime = LocalDateTime.now()
+  val ts: String
 }
 
 object EventType {
@@ -28,6 +26,7 @@ case class SightingEvent(
   eventType: String = EventType.SIGHTING,
   state: String,
   zipCode: String,
+  ts: String,
   pokemon: Pokemon
 ) extends Event
 
@@ -35,6 +34,7 @@ case class BattleEvent(
   eventType: String = EventType.BATTLE,
   state: String,
   zipCode: String,
+  ts: String,
   winner: Trainer,
   trainerA: Trainer,
   pokemonA: Pokemon,
@@ -46,6 +46,7 @@ case class TradeEvent(
   eventType: String = EventType.TRADE,
   state: String,
   zipCode: String,
+  ts: String,
   trainerA: Trainer,
   pokemonA: Pokemon,
   trainerB: Trainer,

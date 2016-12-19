@@ -1,5 +1,7 @@
 package com.fps.datagen.generators
 
+import java.time.LocalDate
+
 import scala.util.Random
 
 /* @author medge */
@@ -18,6 +20,26 @@ abstract class Generator {
    */
   def randomInt(lower: Int = 0, upper: Int = 1): Int = {
     lower + Random.nextInt(upper + 1)
+  }
+
+  /**
+   * Generate a random long integer
+   *
+   * @param lower Long Lower bound for random age. Default: 0
+   * @param upper Long Upper bound for random age. Default: 1
+   * @return Long between lower and upper, inclusive
+   */
+  def randomLong(lower: Long = 0, upper: Long = 1): Long = {
+    lower + Random.nextLong() % upper
+  }
+
+  def randomDate(): LocalDate = {
+    val minDate = LocalDate.of(1970, 1, 1).toEpochDay
+    val maxDate = LocalDate.now().toEpochDay
+
+    val randomDay = randomLong(minDate, maxDate)
+
+    LocalDate.ofEpochDay(randomDay)
   }
 
   /**
