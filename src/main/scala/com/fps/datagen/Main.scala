@@ -4,6 +4,7 @@ import com.fps.datagen.event.{BattleEvent, SightingEvent}
 import com.fps.datagen.generators.Generator
 import com.fps.datagen.generators.geo.GeoGenerator
 import com.fps.datagen.generators.pokemon.PokemonGenerator._
+import com.fps.datagen.pokemon.Generations
 
 import scala.util.Random
 
@@ -11,10 +12,12 @@ import scala.util.Random
 
 object Main extends App with JsonMultiFileWriter {
 
-  val numRecords = 1000
+  val numRecords = 500
   val numFiles = 5
 
   val genFolder = "./gen"
+
+  println(Generations.Generation1.exists(_.pokedexId == 73))
 
   // Creates JSON records
   val battleRecords =
