@@ -35,7 +35,7 @@ object Generations {
     Abra, Kadabra, Alakazam,
     Machop, Machoke, Machamp,
     Bellsprout, Weepinbell, Victreebel,
-    Tentacool, Tentacool,
+    Tentacool, Tentacruel,
     Geodude, Graveler, Golem,
     Ponyta, Rapidash,
     Slowpoke, Slowbro,

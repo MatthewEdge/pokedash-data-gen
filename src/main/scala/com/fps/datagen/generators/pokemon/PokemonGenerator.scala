@@ -34,14 +34,18 @@ object PokemonGenerator extends Generator {
    * @param n Int number of random Pokemon to generate
    * @return Set[Pokemon]
    */
-  def randomPokemon(n: Int): Set[Pokemon] = {
+  def randomPokemon(n: Int, fromGeneration: Set[Pokemon] = Generations.Generation1): Set[Pokemon] = {
     val maxPokeId = 151
-    val indexes = Seq.fill(n)(1 + Random.nextInt(maxPokeId + 1)) // Between 1 and 151, inclusive
+    val indexes = Seq.fill(n)(1 + Random.nextInt(maxPokeId)) // Between 1 and 151, inclusive
 
     // Fetch matching Pokemon from Gen 1 and assign a random level (1 to 80) to them before returning
-    Generations.Generation1
-      .filter(pokemon => indexes.contains(pokemon.pokedexId))
-      .map(_.copy(level = randomInt(1, 80)))
+    val pokemon = fromGeneration.filter(pokemon => indexes.contains(pokemon.pokedexId))
+
+    if(pokemon.isEmpty) {
+      println(s"Empty list generated from $indexes")
+    }
+
+    pokemon.map(_.copy(level = randomInt(1, 80)))
   }
 
 }
