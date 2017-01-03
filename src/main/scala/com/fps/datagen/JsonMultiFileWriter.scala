@@ -11,7 +11,7 @@ trait JsonMultiFileWriter extends FileSupport with JsonSupport {
 
   def writePartFiles[T <: AnyRef : Manifest](entries: Seq[T], nFiles: Int, basePath: String, namePrefix: String): Unit = {
 
-    val groupSize = entries.size / (nFiles - 1)
+    val groupSize = entries.size / nFiles
     val groups = entries.grouped(groupSize).toList
 
     // Ensure basePath exists on the filesystem
@@ -20,7 +20,7 @@ trait JsonMultiFileWriter extends FileSupport with JsonSupport {
       baseFilePath.mkdirs()
     }
 
-    val filePaths = (0 until nFiles).map(i => s"$basePath/$namePrefix$i.json")
+    val filePaths = (0 to nFiles).map(i => s"$basePath/$namePrefix$i.json")
 
     // Map each part file to a group of records and write out to a file
     filePaths.zip(groups).foreach {
