@@ -4,7 +4,6 @@ import com.fps.datagen.event.{BattleEvent, SightingEvent}
 import com.fps.datagen.generators.Generator
 import com.fps.datagen.generators.geo.GeoGenerator
 import com.fps.datagen.generators.pokemon.PokemonGenerator._
-import com.fps.datagen.pokemon.Generations
 
 import scala.util.Random
 
@@ -17,11 +16,9 @@ object Main extends App with JsonMultiFileWriter {
 
   val genFolder = "./gen"
 
-  println(Generations.Generation1.exists(_.pokedexId == 73))
-
   // Creates JSON records
   val battleRecords =
-    (0 to numRecords)
+    (0 until numRecords)
       .map(i => GeoGenerator.randomStateAndZip())
       .map { case (state, zip) => EventGenerator.randomBattleEvent(state, zip) }
 
@@ -29,7 +26,7 @@ object Main extends App with JsonMultiFileWriter {
 
 
   val sightingRecords =
-    (0 to numRecords)
+    (0 until numRecords)
       .map(i => GeoGenerator.randomStateAndZip())
       .map { case (state, zip) => EventGenerator.randomSightingEvent(state, zip) }
 
@@ -48,21 +45,10 @@ object EventGenerator extends Generator {
    */
   def randomBattleEvent(state: String, zip: String): BattleEvent = {
     val trainerA = randomTrainer()
-    val pokemonA = trainerA.pokemon.head
-
     val trainerB = randomTrainer()
-    val pokemonB = trainerB.pokemon.head
 
-    // Either select by highest level pokemon, or random if levels are equal
-    val victoriousTrainer = {
-      if(pokemonA.level > pokemonB.level)
-        trainerA
-      else if(pokemonA.level < pokemonB.level)
-        trainerB
-      else
-        Random.shuffle(List(trainerA, trainerB)).head
-
-    }
+    // Currently choose a random trainer. Needs to be a bit....smarter
+    val victoriousTrainer = if(Random.nextInt(10) % 2 == 0) trainerA else trainerB
 
     BattleEvent(
       state,
@@ -70,9 +56,7 @@ object EventGenerator extends Generator {
       randomDate().toString,
       victoriousTrainer,
       trainerA,
-      pokemonA,
-      trainerB,
-      pokemonB
+      trainerB
     )
   }
 
@@ -84,8 +68,8 @@ object EventGenerator extends Generator {
    * @return SightingEvent
    */
   def randomSightingEvent(state: String, zip: String, date: String = randomDate().toString): SightingEvent = {
-    val pokemon = randomPokemon(1)
+    val pokemon = randomPokemon(1).head
 
-    SightingEvent(state, zip, date, pokemon.head)
+    SightingEvent(state, zip, date, pokemon)
   }
 }

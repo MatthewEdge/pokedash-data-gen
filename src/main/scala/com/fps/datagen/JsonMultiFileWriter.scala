@@ -27,6 +27,8 @@ trait JsonMultiFileWriter extends FileSupport with JsonSupport {
       case (path, group) => {
         val groupJson = writePretty[Seq[T]](group)
 
+        println(s"Writing ${group.size} records to $path")
+
         write(path, groupJson)
       }
     }

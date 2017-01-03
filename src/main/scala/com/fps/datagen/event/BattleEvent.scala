@@ -1,6 +1,5 @@
 package com.fps.datagen.event
 
-import com.fps.datagen.pokemon.Pokemon
 import com.fps.datagen.trainer.Trainer
 
 /* @author medge */
@@ -11,9 +10,7 @@ case class BattleEvent(
   ts: String,
   winner: Trainer,
   trainerA: Trainer,
-  pokemonA: Pokemon,
-  trainerB: Trainer,
-  pokemonB: Pokemon
+  trainerB: Trainer
 ) extends Event {
 
   val eventType: String = EventType.BATTLE
